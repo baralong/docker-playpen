@@ -1,0 +1,19 @@
+FROM microsoft/dotnet-nightly:2.1-sdk-nanoserver-1709 as builder
+WORKDIR /app
+
+# copy csproj and restore as distinct layers
+COPY *.csproj ./
+RUN dotnet restore
+
+# copy and build everything else
+COPY . ./
+RUN dotnet publish -c Release -o out
+
+# now for the container to run
+FROM microsoft/dotnet-nightly:2.1-runtime-nanoserver-1709
+
+WORKDIR /app
+
+COPY --from=builder /app/out .
+
+ENTRYPOINT ["dotnet", "docker-playpen.dll"]
