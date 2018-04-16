@@ -5,16 +5,25 @@ docker ps --all
 docker start 
 docker attach
 docker rm
-docker run -it -rm -v pwd\example:/example ubuntu /bin/bash 
+docker run --it --rm -v pwd\example:/example ubuntu /bin/bash 
+
+#demo 2 node
 docker run -it --rm --name node node:7.7.4-alpine
 process.exit()
-
 docker run -it --rm --name node -d -v $pwd\node:/src -w /src node:7.7.4-alpine node app.js
 docker logs node
 curl http://localhost:3000
 docker run -it --rm --name node -d -v $pwd\node:/src -w /src -p 8080:3000 node:7.7.4-alpine node app.js
+curl http://localhost:8080
+
+# demo 3 docker file, node then c#
 docker build -t nodejs-app .
 docker run --rm --name node -p 8080:3000 -d nodejs-app
 
+docker build -t dotnet-linux -f dockerfile.linux .
+docker run --rm --name dotnet dotnet-linux
+
+docker build -t dotnet-nano dockerfile.nano
+docker run -rm -name dotnet
 
 
