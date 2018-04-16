@@ -20,7 +20,16 @@ curl http://localhost:8080
 docker build -t nodejs-app .
 docker run --rm --name node -p 8080:3000 -d nodejs-app
 
-docker build -t dotnet-linux -f dockerfile.linux .
+#simple
+docker build -t dotnet-linux -f dockerfile.simple .
+docker run --rm --name dotnet dotnet-linux
+
+#alternate linux
+docker build -t dotnet-alpine -f dockerfile.alpine .
+docker run --rm --name dotnet dotnet-linux
+
+#smaller with just the runtime
+docker build -t dotnet-smaller -f dockerfile.smaller .
 docker run --rm --name dotnet dotnet-linux
 
 docker build -t dotnet-nano dockerfile.nano
