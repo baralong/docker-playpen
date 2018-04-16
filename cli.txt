@@ -26,11 +26,11 @@ docker run --rm --name dotnet dotnet-linux
 
 #alternate linux
 docker build -t dotnet-alpine -f dockerfile.alpine .
-docker run --rm --name dotnet dotnet-linux
+docker run --rm --name dotnet dotnet-alpine
 
 #smaller with just the runtime
 docker build -t dotnet-smaller -f dockerfile.smaller .
-docker run --rm --name dotnet dotnet-linux
+docker run --rm --name dotnet dotnet-smaller
 
 docker build -t dotnet-nano dockerfile.nano
 docker run -rm -name dotnet
