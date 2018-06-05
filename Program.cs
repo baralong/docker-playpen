@@ -6,7 +6,7 @@ namespace docker_playpen
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Diversus!");
+            Console.WriteLine("Hello Perth .net!");
         }
     }
 }
