@@ -32,7 +32,5 @@ docker run --rm --name dotnet dotnet-alpine
 docker build -t dotnet-smaller -f dockerfile.smaller .
 docker run --rm --name dotnet dotnet-smaller
 
-docker build -t dotnet-nano dockerfile.nano
-docker run -rm -name dotnet
 
 
