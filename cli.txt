@@ -12,7 +12,7 @@ docker run -it --rm --name node node:7.7.4-alpine
 process.exit()
 docker run -it --rm --name node -d -v $pwd\node:/src -w /src node:7.7.4-alpine node app.js
 docker logs node
-curl http://localhost:3000
+curl http://localhost:3000curl http://localhost:3000
 docker run -it --rm --name node -d -v $pwd\node:/src -w /src -p 8080:3000 node:7.7.4-alpine node app.js
 curl http://localhost:8080
 
@@ -26,9 +26,13 @@ docker run --rm --name dotnet dotnet-linux
 
 #alternate linux
 docker build -t dotnet-alpine -f dockerfile.alpine .
+docker build -t dotnet-alpine -f dockerfile.alpine .
 docker run --rm --name dotnet dotnet-alpine
 
 #smaller with just the runtime
+docker build -t dotnet-smaller -f dockerfile.smaller .
+
+
 docker build -t dotnet-smaller -f dockerfile.smaller .
 docker run --rm --name dotnet dotnet-smaller
 
