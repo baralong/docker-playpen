@@ -1,0 +1,15 @@
+FROM microsoft/dotnet-nightly:2.1-sdk as builder
+WORKDIR /app
+
+COPY . ./
+RUN dotnet restore
+RUN dotnet publish -c Release -o out
+
+# now for the container to run
+FROM microsoft/dotnet-nightly:2.1-runtime-alpine
+
+WORKDIR /app
+
+COPY --from=builder /app/out .
+
+ENTRYPOINT ["dotnet", "docker-playpen.dll"]
